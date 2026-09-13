@@ -1,16 +1,92 @@
-# React + Vite
+# 💰 Expense Tracker Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Expense Tracker Pro is a modern and responsive personal finance management web application built with **React.js** and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+It helps users track their income and expenses, manage transactions, organize spending into categories, and understand their overall financial activity through a clean and intuitive dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📊 **Dashboard**
+  - View overall financial summary
+  - Track income and expenses
+  - Get a quick overview of spending
 
-## Expanding the ESLint configuration
+- 💳 **Transaction Management**
+  - View transactions
+  - Add new transactions
+  - Track transaction details
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🏷️ **Categories**
+  - Organize transactions by categories
+  - Manage different spending categories
+
+- 📈 **Reports**
+  - Analyze spending patterns
+  - Understand financial activity through reports and visualizations
+
+- ⚙️ **Settings**
+  - Manage application preferences
+  - Configure user settings
+
+- 🔍 **Search**
+  - Search transactions and categories quickly
+
+- 📱 **Responsive UI**
+  - Designed to work across different screen sizes
+
+- 🎨 **Modern Interface**
+  - Clean and minimal dashboard
+  - Sidebar navigation
+  - Card-based layout
+  - Modern icons and visual elements
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- **React.js**
+- **JavaScript**
+- **Tailwind CSS**
+- **Lucide React**
+
+### Tools
+
+- **Vite**
+- **Git**
+- **GitHub**
+
+---
+
+## 📂 Project Structure
+
+```text
+Expense-Tracker-Pro/
+│
+├── public/
+│
+├── src/
+│   ├── assets/
+│   │   ├── ExpenseTrackerProImg.png
+│   │   ├── AnalyseYourSpendingImg.png
+│   │   └── ...
+│   │
+│   ├── Pages/
+│   │   ├── Dashboard/
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── ...
+│   │   │
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   └── ...
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+├── vite.config.js
+└── README.md
