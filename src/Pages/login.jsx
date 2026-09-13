@@ -18,8 +18,10 @@ function Login() {
         {/* #01 - Left Section */}
         <div>
             {/* #01 - Logo and App Name */}
-            <div className="flex items-center gap-3">
-            <img src={ExpenseTrackerProImg} alt="" className="w-10 h-10 object-contain"/>
+            <div className="flex items-center gap-3
+            mb-14 
+            ">
+            <img src={ExpenseTrackerProImg} alt="" className="w-10 h-10 object-contain rounded-r-lg"/>
             <p className="text-xl font-bold text-white" >Expense Tracker Pro</p>
             </div>
 
