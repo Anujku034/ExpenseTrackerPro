@@ -12,7 +12,7 @@ import   AddTransaction  from "./Pages/AddTransactionPage";
 function App() {
   return (
     <div  className="h-screen bg-slate-200" >
-       {/*add transaction*/}
+       {/*add transactionn*/}
        <AddTransaction/>
     </div>
   )
