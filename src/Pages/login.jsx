@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FcGoogle } from "react-icons/fc";
@@ -28,58 +27,108 @@ function Login() {
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   function IsValidUser() {
+    setEmailError("");
+    setpasswordError("");
+    setcheckedError("");
     setwrongCredentials("");
     setLoginSuccess(false);
 
     let hasError = false;
 
-    if (!Emailaddress.trim()) {
+    const email = Emailaddress.trim();
+    const password = inputpassword;
+
+    // Email validation
+    if (!email) {
       setEmailError("This field can't be Empty");
       hasError = true;
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(Emailaddress.trim())
-    ) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setEmailError("Invalid format");
       hasError = true;
-    } else {
-      setEmailError("");
     }
 
-    if (!inputpassword.trim()) {
+    // Password validation
+    if (!password.trim()) {
       setpasswordError("This field can't be Empty");
       hasError = true;
     } else if (
       !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(
-        inputpassword
+        password
       )
     ) {
       setpasswordError("Invalid format");
       hasError = true;
-    } else {
-      setpasswordError("");
     }
 
+    // Remember me validation
     if (!Isticked) {
-      setcheckedError(`Please select "Remember me" to continue.`);
+      setcheckedError('Please select "Remember me" to continue.');
       hasError = true;
-    } else {
-      setcheckedError("");
     }
 
     if (hasError) {
       return;
     }
 
-    const users =
-      JSON.parse(localStorage.getItem("userRegisteredData")) || [];
+    // Get registered users
+    let storedUsers = localStorage.getItem("userRegisteredData");
 
-    const user = users.find(
-      (user) =>
-        user.email === Emailaddress.trim() &&
-        user.password === inputpassword
-    );
+    if (!storedUsers) {
+      setwrongCredentials(
+        "❌ No account found. Please create an account first."
+      );
+      return;
+    }
+
+    let users;
+
+    try {
+      users = JSON.parse(storedUsers);
+    } catch (error) {
+      setwrongCredentials(
+        "❌ Something went wrong with your account data."
+      );
+      return;
+    }
+
+    // Support both array and single-object storage
+    if (!Array.isArray(users)) {
+      users = [users];
+    }
+
+    // Find matching user
+    const user = users.find((registeredUser) => {
+      if (!registeredUser) return false;
+
+      const registeredEmail = String(
+        registeredUser.email ||
+        registeredUser.Emailaddress ||
+        registeredUser.Email ||
+        ""
+      )
+        .trim()
+        .toLowerCase();
+
+      const registeredPassword = String(
+        registeredUser.password ||
+        registeredUser.inputpassword ||
+        registeredUser.Password ||
+        ""
+      );
+
+      return (
+        registeredEmail === email.toLowerCase() &&
+        registeredPassword === password
+      );
+    });
 
     if (user) {
+      // Save currently logged-in user
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify(user)
+      );
+
       setLoginSuccess(true);
 
       setwrongCredentials(
@@ -88,7 +137,7 @@ function Login() {
 
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2000);
+      }, 1000);
     } else {
       setLoginSuccess(false);
       setwrongCredentials("❌ Invalid email or password.");
@@ -100,19 +149,15 @@ function Login() {
       className="min-h-screen w-full bg-cover bg-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8"
       style={{ backgroundImage: `url(${LoginPageBgImg})` }}
     >
-
-      {/* Main Container */}
       <div className="mx-auto flex min-h-[calc(100vh-3rem)] w-full max-w-7xl items-center justify-center gap-4">
 
-        {/* ================= LEFT SECTION ================= */}
-
+        {/* LEFT SECTION */}
         <div className="hidden w-full max-w-[520px] lg:block">
 
-          {/* Logo and App Name */}
           <div className="mb-10 flex items-center gap-3 xl:mb-14">
             <img
               src={ExpenseTrackerProImg}
-              alt=""
+              alt="Expense Tracker Pro"
               className="h-10 w-10 rounded-r-lg object-contain"
             />
 
@@ -121,7 +166,6 @@ function Login() {
             </p>
           </div>
 
-          {/* Tagline Section */}
           <div className="max-w-[520px]">
             <p className="text-4xl font-extrabold leading-tight text-white xl:text-5xl">
               A Smarter
@@ -144,10 +188,8 @@ function Login() {
             </p>
           </div>
 
-          {/* Features Section */}
           <div className="mt-8 space-y-4 xl:mt-10 xl:space-y-5">
 
-            {/* Feature #01 */}
             <div className="flex items-center gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/20 backdrop-blur-sm xl:h-11 xl:w-11">
                 <img
@@ -162,7 +204,6 @@ function Login() {
               </p>
             </div>
 
-            {/* Feature #02 */}
             <div className="flex items-center gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/20 backdrop-blur-sm xl:h-11 xl:w-11">
                 <img
@@ -177,7 +218,6 @@ function Login() {
               </p>
             </div>
 
-            {/* Feature #03 */}
             <div className="flex items-center gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/20 backdrop-blur-sm xl:h-11 xl:w-11">
                 <img
@@ -195,11 +235,10 @@ function Login() {
           </div>
         </div>
 
-        {/* ================= RIGHT SECTION / LOGIN CARD ================= */}
-
+        {/* LOGIN CARD */}
         <div className="w-full max-w-[440px] rounded-2xl bg-white px-5 py-6 shadow-2xl sm:px-7 sm:py-7 md:px-8 md:py-8">
 
-          {/* Header */}
+          {/* HEADER */}
           <div className="mb-6 sm:mb-7">
             <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Welcome Back 👋
@@ -210,11 +249,10 @@ function Login() {
             </p>
           </div>
 
-          {/* ================= INPUT SECTION ================= */}
-
+          {/* INPUTS */}
           <div className="space-y-4">
 
-            {/* Email */}
+            {/* EMAIL */}
             <div>
               <div
                 className={`flex items-center gap-3 rounded-lg border px-3.5 py-2.5 sm:px-4 sm:py-3 ${
@@ -258,7 +296,7 @@ function Login() {
               )}
             </div>
 
-            {/* Password */}
+            {/* PASSWORD */}
             <div>
               <div
                 className={`flex items-center gap-3 rounded-lg border px-3.5 py-2.5 sm:px-4 sm:py-3 ${
@@ -304,8 +342,7 @@ function Login() {
 
           </div>
 
-          {/* ================= REMEMBER ME ================= */}
-
+          {/* REMEMBER ME */}
           <div className="mt-5 flex items-start justify-between gap-3">
 
             <div>
@@ -336,7 +373,6 @@ function Login() {
               )}
             </div>
 
-            {/* Forgot Password */}
             <button
               type="button"
               className="text-right text-xs font-semibold text-indigo-600 hover:text-indigo-700"
@@ -346,8 +382,7 @@ function Login() {
 
           </div>
 
-          {/* ================= SIGN IN ================= */}
-
+          {/* SIGN IN */}
           <button
             type="button"
             onClick={IsValidUser}
@@ -356,6 +391,7 @@ function Login() {
             Sign In&nbsp; →
           </button>
 
+          {/* LOGIN MESSAGE */}
           {wrongCredentials && (
             <p
               className={`mt-4 text-center text-sm ${
@@ -368,8 +404,7 @@ function Login() {
             </p>
           )}
 
-          {/* ================= DIVIDER ================= */}
-
+          {/* DIVIDER */}
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-slate-200"></div>
 
@@ -380,8 +415,7 @@ function Login() {
             <div className="h-px flex-1 bg-slate-200"></div>
           </div>
 
-          {/* ================= SOCIAL LOGIN ================= */}
-
+          {/* SOCIAL LOGIN */}
           <div className="flex gap-3">
 
             <button
@@ -407,8 +441,7 @@ function Login() {
 
           </div>
 
-          {/* ================= SIGN UP ================= */}
-
+          {/* REGISTER */}
           <div className="mt-7 flex justify-center gap-1 text-xs sm:mt-8">
 
             <p className="text-slate-500">
