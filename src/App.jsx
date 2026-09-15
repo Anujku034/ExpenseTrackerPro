@@ -1,3 +1,5 @@
+import {useState} from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from 'react'
 import Login from "./Pages/login.jsx";
 import Register from "./Pages/Register.jsx";
@@ -9,12 +11,16 @@ import TransactionDetails from "./Pages/TransactionDetailPage.jsx";
 import Settings from "./Pages/SettingsPage.jsx";
 import Transactions from "./Pages/AllTransaction.jsx";
 import   AddTransaction  from "./Pages/AddTransactionPage";
+
 function App() {
   return (
-    <div  className="h-screen bg-slate-200" >
-       {/*add transactionn*/}
-       <AddTransaction/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
