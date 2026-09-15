@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header.jsx";
-import Sidebar from "./Sidebar.jsx";
+import Sidebar from "./sidebar.jsx";
 
 import Card from "../../Components/card.jsx";
 import IncomeExpenseChart from "../../Components/bargraph.jsx";

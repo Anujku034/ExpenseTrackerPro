@@ -10,7 +10,7 @@ import {
 
 import ExpenseTrackerProImg from "../../assets/ExpenseTrackerProImg.png";
 import AnalyseYourSpendingImg from "../../assets/AnalyseYourSpendingImg.png";
-import { SidebarItem } from "../../components/sidebaritem.jsx";
+import { SidebarItem } from "../../Components/sidebaritem.jsx";
 
 function Sidebar() {
   return (

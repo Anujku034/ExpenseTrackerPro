@@ -5,7 +5,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 
-import Sidebar from "./Dashboard/Sidebar.jsx";
+import Sidebar from "./Dashboard/sidebar.jsx";
 import Header from "./Dashboard/Header.jsx";
 
 function Transactions() {
