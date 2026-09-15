@@ -71,7 +71,7 @@ function Login() {
     }
 
     // Get registered users
-    let storedUsers = localStorage.getItem("userRegisteredData");
+    let storedUsers = localStorage.getItem("userRegistered");
 
     if (!storedUsers) {
       setwrongCredentials(
