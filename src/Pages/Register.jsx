@@ -63,20 +63,30 @@ function Register() {
     }
 
     const userRegisteredData = {
-      username,
-      email,
-      password,
-    };
+  username: username.trim(),
+  email: email.trim().toLowerCase(),
+  password: password,
+};
 
-    localStorage.setItem(
-      "userRegistered",
-      JSON.stringify(userRegisteredData)
-    );
-    setregistered("✅Registration Successfull!")
-    setTimeout(() => {
-      navigate("/")
-    },2000);
-  };
+  // Get old registered users
+  const existingUsers =
+    JSON.parse(localStorage.getItem("userRegisteredData")) || [];
+
+  // Add new user
+  existingUsers.push(userRegisteredData);
+
+  // Save updated users array
+  localStorage.setItem(
+    "userRegisteredData",
+    JSON.stringify(existingUsers)
+  );
+
+  setregistered("✅ Registration Successful!");
+
+  setTimeout(() => {
+    navigate("/");
+  }, 2000);
+    };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
