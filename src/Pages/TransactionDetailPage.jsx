@@ -10,24 +10,14 @@ import {
   FileText,
 } from "lucide-react";
 
-import Sidebar from "./Dashboard/sidebar.jsx";
-import Header from "./Dashboard/Header.jsx";
-
 function TransactionDetails() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="shadow-xl">
 
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Header */}
-      <div className="fixed top-0 left-[246px] right-4 z-50">
-        <Header />
-      </div>
-
+      
 
       {/* Main */}
-      <main className="ml-[246px] mr-4 mt-[60px] min-h-[calc(100vh-60px)] px-6 pb-6">
+      <main >
 
         {/* Back */}
         <button className="mb-4 flex items-center gap-2 text-xs font-medium text-slate-500">

@@ -7,25 +7,12 @@ import {
   CircleAlert,
   X,
 } from "lucide-react";
-
-import Sidebar from "./Dashboard/sidebar.jsx";
-import Header from "./Dashboard/Header.jsx";
-
 function Settings() {
   return (
-    <div className="min-h-screen bg-slate-50">
-
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Header */}
-      <div className="fixed top-0 left-[246px] right-4 z-50">
-        <Header />
-      </div>
-
+    <div className="shadow-xl">
 
       {/* Main */}
-      <main className="ml-[246px] mr-4 mt-[60px] min-h-[calc(100vh-60px)] px-6 pb-6">
+      <main >
 
         {/* Heading */}
         <div className="mb-5">

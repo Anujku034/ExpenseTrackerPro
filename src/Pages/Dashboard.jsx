@@ -1,12 +1,9 @@
 import React from "react";
-import Header from "./Header.jsx";
-import Sidebar from "./sidebar.jsx";
-
-import Card from "../../Components/card.jsx";
-import IncomeExpenseChart from "../../Components/bargraph.jsx";
-import ExpenseCategories from "../../Components/pieChart.jsx";
-import RecentTransactions from "../../Components/RecentTransaction.jsx";
-import Mountain from "../../Components/dashboardright.jsx";
+import Card from "../Components/card.jsx";
+import IncomeExpenseChart from "../Components/bargraph.jsx";
+import ExpenseCategories from "../Components/pieChart.jsx";
+import RecentTransactions from "../Components/RecentTransaction.jsx";
+import Mountain from "../Components/dashboardright.jsx";
 
 import {
   Wallet,
@@ -17,27 +14,11 @@ import {
 
 function Dashboard() {
   return (
-    <div className="min-h-screen bg-slate-50">
-
-      {/* ================= SIDEBAR ================= */}
-      <Sidebar />
-
-      {/* ================= HEADER ================= */}
-      <div className="fixed top-0 left-[246px] right-4 z-50">
-        <Header />
-      </div>
+    <div >
 
       {/* ================= DASHBOARD CONTENT ================= */}
       <main
-        className="
-          ml-[246px]
-          mr-4
-          mt-[60px]
-          min-h-[calc(100vh-60px)]
-          px-6
-          pb-6
-          shadow-xl
-        "
+       className="shadow-xl"
       >
 
         {/* ================= TOP HEADING ================= */}
