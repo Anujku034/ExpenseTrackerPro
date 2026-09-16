@@ -7,6 +7,7 @@ import {
   Tooltip,
   Bar,
 } from "recharts";
+
 function IncomeExpenseChart() {
   const data = [
     { month: "Jan", income: 20000, expense: 10000 },
@@ -24,39 +25,59 @@ function IncomeExpenseChart() {
   ];
 
   return (
-    <div className="h-70 w-full rounded-2xl bg-white p-5 shadow-xl">
+    <div className="w-full rounded-2xl bg-white p-3 shadow-xl sm:p-4 md:p-5">
 
-      <h2 className="mb-4 text-lg font-semibold text-slate-800">
+      {/* Heading */}
+      <h2 className="mb-3 text-base font-semibold text-slate-800 sm:mb-4 sm:text-lg">
         Income vs Expenses
       </h2>
 
-      <ResponsiveContainer width="100%" height="85%">
-        <BarChart data={data}>
+      {/* Responsive Chart */}
+      <div className="h-[250px] w-full sm:h-[300px] md:h-[340px] lg:h-[360px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{
+              top: 5,
+              right: 5,
+              left: -15,
+              bottom: 5,
+            }}
+            barGap={2}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
 
-          <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="month"
+              tick={{ fontSize: 11 }}
+              interval="preserveStartEnd"
+            />
 
-          <XAxis dataKey="month" />
+            <YAxis
+              tick={{ fontSize: 11 }}
+              width={45}
+            />
 
-          <YAxis />
+            <Tooltip />
 
-          <Tooltip />
+            <Bar
+              dataKey="income"
+              fill="#22c55e"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={25}
+            />
 
-          <Bar
-            dataKey="income"
-            fill="#22c55e"
-            radius={[4, 4, 0, 0]}
-          />
-
-          <Bar
-            dataKey="expense"
-            fill="#f87171"
-            radius={[4, 4, 0, 0]}
-          />
-
-        </BarChart>
-      </ResponsiveContainer>
-
+            <Bar
+              dataKey="expense"
+              fill="#f87171"
+              radius={[4, 4, 0, 0]}
+              maxBarSize={25}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
+
 export default IncomeExpenseChart;
