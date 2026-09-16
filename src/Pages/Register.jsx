@@ -329,7 +329,10 @@ function Register() {
           <div className="mt-5 text-center">
             <p className="text-[11px] text-slate-500 sm:text-xs">
               Already have an account?{" "}
-              <span className="cursor-pointer font-semibold text-indigo-600">
+              <span className="cursor-pointer font-semibold text-indigo-600"
+              onClick={() =>{
+                navigate("/");
+              }}>
                 Sign in
               </span>
             </p>

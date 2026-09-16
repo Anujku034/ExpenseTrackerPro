@@ -1,3 +1,12 @@
+import {
+  ResponsiveContainer,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Bar,
+} from "recharts";
 function IncomeExpenseChart() {
   const data = [
     { month: "Jan", income: 20000, expense: 10000 },
